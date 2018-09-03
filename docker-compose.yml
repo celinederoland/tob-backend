@@ -27,10 +27,10 @@ services:
     volumes:
       - ./:/var/www/html
     labels:
-      traefik.frontend.rule: Host:demo1.${PROJECT_DOMAIN}
-      traefik.docker.network: traefik_default
-      traefik.backend: tobacco-php-backend-server
-      traefik.enable: true
+      traefik.frontend.rule: "Host:demo1.${PROJECT_DOMAIN}"
+      traefik.docker.network: "traefik_default"
+      traefik.backend: "tobacco-php-backend-server"
+      traefik.enable: "true"
     environment:
       REDIS_HOST: redis
       REDIS_PORT: 6379
