@@ -1,0 +1,54 @@
+{
+  "name": "Accountancy Models",
+  "description": "Accountancy project models",
+  "authors": [
+    {
+      "name": "Céline de Roland"
+    }
+  ],
+  "version": "0.1",
+  "autoload": {
+    "psr-4": {
+      "Tob\\": [
+        "src/",
+        "src/Database",
+        "src/Models",
+        "src/Repositories",
+        "src/Helpers",
+        "src/Exceptions",
+        "src/Controllers",
+        "src/Router",
+        "src/Utils",
+        "src/Exceptions"
+      ]
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tob\\": [
+        "tests/",
+        "tests/Database",
+        "tests/Models",
+        "tests/Repositories",
+        "tests/Helpers",
+        "tests/Exceptions",
+        "tests/Controllers",
+        "tests/Router",
+        "tests/Utils",
+        "mocks",
+        "mocks/Utils",
+        "fixtures"
+      ]
+    }
+  },
+  "require": {
+    "php": "~7.2",
+    "ext-pdo": "*",
+    "ext-json": "*",
+    "klein/klein": "v2.1.2",
+    "predis/predis": "^1.1"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^7.3"
+  }
+}

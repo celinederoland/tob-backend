@@ -1,0 +1,67 @@
+version: '2'
+
+services:
+
+  redis-tests:
+    image: redis:latest
+    networks:
+      - back
+    ports:
+      - 6380:6379
+
+  redis:
+    image: redis:latest
+    networks:
+      - back
+    ports:
+      - 6381:6379
+
+  composer:
+    build: env/builds/composer-php7.2
+    volumes:
+      - ./:/app
+    command: composer install
+
+  server:
+    build: env/builds/apache-php7.2
+    volumes:
+      - ./:/var/www/html
+    labels:
+      traefik.frontend.rule: Host:demo1.${PROJECT_DOMAIN}
+      traefik.docker.network: traefik_default
+      traefik.backend: tobacco-php-backend-server
+      traefik.enable: true
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    networks:
+      - traefik
+      - back
+      - front
+    links:
+      - redis
+    ports:
+      - 8004:80
+
+  testunit:
+    build: env/builds/php7.2
+    volumes:
+      - ./:/app
+    command: php vendor/bin/phpunit
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    networks:
+      - back
+    links:
+      - redis
+      - redis-tests
+
+networks:
+  traefik:
+    external:
+      name: traefik_default
+  back:
+    driver: bridge
+  front:
+    driver: bridge

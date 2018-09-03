@@ -1,0 +1,61 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: celineperso
+ * Date: 18.08.18
+ * Time: 07:34
+ */
+
+namespace Tob;
+
+
+Trait TimeController {
+
+    /**
+     * @return array
+     */
+    public function available() {
+
+        return TimeRepository::instance()->getAvailable();
+    }
+
+    /**
+     * @param $week
+     * @return Week
+     * @throws InvalidException
+     */
+    public function get($week) {
+
+        return TimeRepository::instance()->get($week);
+    }
+
+    /**
+     * @return array
+     * @throws InvalidException
+     */
+    public function getAll() {
+
+        return TimeRepository::instance()->aggregateAll();
+    }
+
+    /**
+     * @param $timestamp
+     * @return array
+     * @throws InvalidException
+     */
+    public function add($timestamp) {
+
+        $time        = (new Time())->init($timestamp)->save();
+        $update_week = $time->weekStartTime();
+        $update_day  = $time->dayStartTime();
+        return [ 'should_update' => 'w-' . $time->weekStartTime(), 'data' => $this->get($update_week)];
+    }
+
+    public function remove($timestamp) {
+
+        $time        = (new Time())->init($timestamp)->delete();
+        $update_week = $time->weekStartTime();
+        $update_day  = $time->dayStartTime();
+        return [ 'should_update' => 'w-' . $time->weekStartTime(), 'data' => $this->get($update_week)];
+    }
+}
