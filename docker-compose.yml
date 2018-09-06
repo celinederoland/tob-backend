@@ -6,15 +6,13 @@ services:
     image: redis:latest
     networks:
       - back
-    ports:
-      - 6380:6379
 
   redis:
     image: redis:latest
+    volumes:
+      - ../../volumes/tob:/data
     networks:
       - back
-    ports:
-      - 6381:6379
 
   composer:
     build: env/builds/composer-php7.2
@@ -27,7 +25,7 @@ services:
     volumes:
       - ./:/var/www/html
     labels:
-      traefik.frontend.rule: "Host:demo1.${PROJECT_DOMAIN}"
+      traefik.frontend.rule: "Host:tobacco-api.${PROJECT_DOMAIN}"
       traefik.docker.network: "traefik_default"
       traefik.backend: "tobacco-php-backend-server"
       traefik.enable: "true"
@@ -40,8 +38,6 @@ services:
       - front
     links:
       - redis
-    ports:
-      - 8004:80
 
   testunit:
     build: env/builds/php7.2
@@ -49,7 +45,7 @@ services:
       - ./:/app
     command: php vendor/bin/phpunit
     environment:
-      REDIS_HOST: redis
+      REDIS_HOST: redis-tests
       REDIS_PORT: 6379
     networks:
       - back
