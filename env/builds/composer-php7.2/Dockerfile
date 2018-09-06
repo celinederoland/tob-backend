@@ -31,7 +31,7 @@ RUN php -r " \
         echo 'Integrity check failed, installer is either corrupt or worse.' . PHP_EOL; \
         exit(1); \
     }" \
-RUN php /tmp/installer.php --no-ansi --install-dir=/usr/bin --filename=composer --version=${COMPOSER_VERSION} \
+RUN php /tmp/installer.php --no-ansi --install-dir=/usr/bin --filename=composer --version=${COMPOSER_VERSION}
 RUN composer --ansi --version --no-interaction \
 RUN rm -rf /tmp/* /tmp/.htaccess
 

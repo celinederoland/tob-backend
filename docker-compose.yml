@@ -15,7 +15,7 @@ services:
       - back
 
   composer:
-    build: env/builds/composer-php7.2
+    build: derolandceline/composer
     volumes:
       - ./:/app
     command: composer install
