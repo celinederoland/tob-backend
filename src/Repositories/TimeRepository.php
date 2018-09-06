@@ -8,8 +8,6 @@
 
 namespace Tob;
 
-use phpDocumentor\Reflection\Types\Boolean;
-
 class TimeRepository {
 
     use EuclideanDivision;
@@ -49,7 +47,7 @@ class TimeRepository {
         return $this;
     }
 
-    public function isInitialized(): Boolean {
+    public function isInitialized(): bool {
 
         return is_null(Config::connection()->get('start'));
     }
