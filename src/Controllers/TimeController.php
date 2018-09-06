@@ -45,6 +45,9 @@ Trait TimeController {
      */
     public function add($timestamp) {
 
+        if(TimeRepository::instance()->isInitialized()) {
+            TimeRepository::instance()->initializeDatabase($timestamp);
+        }
         $time        = (new Time())->init($timestamp)->save();
         $update_week = $time->weekStartTime();
         $update_day  = $time->dayStartTime();
