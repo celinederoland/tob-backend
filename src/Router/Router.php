@@ -94,6 +94,14 @@ class Router {
             }
         );
 
+        $this->klein->respond('POST', '/times',
+
+            function (Request $request, Response $response, ServiceProvider $service) {
+
+                $response->json($this->add($request->param('times', 0)));
+            }
+        );
+
         $this->klein->respond('POST', '/time/delete/[i:time]',
 
             function (Request $request, Response $response, ServiceProvider $service) {

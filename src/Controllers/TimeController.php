@@ -54,6 +54,19 @@ Trait TimeController {
         return [ 'should_update' => 'w-' . $time->weekStartTime(), 'data' => $this->get($update_week)];
     }
 
+    /**
+     * @param $times
+     * @return array
+     * @throws InvalidException
+     */
+    public function multiAdd($times) {
+
+        foreach ($times as $timestamp) {
+            $time        = (new Time())->init($timestamp)->save();
+        }
+        return $this->getAll();
+    }
+
     public function remove($timestamp) {
 
         $time        = (new Time())->init($timestamp)->delete();
