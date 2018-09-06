@@ -98,7 +98,7 @@ class Router {
 
             function (Request $request, Response $response, ServiceProvider $service) {
 
-                $response->json($this->add($request->param('times', 0)));
+                $response->json($this->multiAdd($request->param('times', [])));
             }
         );
 
