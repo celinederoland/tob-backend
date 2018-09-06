@@ -15,7 +15,7 @@ services:
       - back
 
   composer:
-    build: derolandceline/composer
+    image: derolandceline/composer
     volumes:
       - ./:/app
     command: composer install
