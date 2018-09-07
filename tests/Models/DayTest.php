@@ -21,7 +21,16 @@ class DayTest extends TestCase {
         $time3    = (new Time())->init(1535353500); //2018-08-27 00:10
         $day      = (new Day())->addTime($time1)->addTime($time2);
         $actual   = json_decode(json_encode($day), true);
-        $expected = ['data' => [1535265900, 1535267100], 'stats' => []];
+        $expected = [
+            'data'  => [1535265900, 1535267100],
+            'stats' => [
+                'count'       => 2,
+                'duration'    => 1200,
+                'min_gap'     => 1200,
+                'max_gap'     => 1200,
+                'average_gap' => 1200,
+            ]
+        ];
         self::assertEquals($expected, $actual);
         try {
             $day->addTime($time3);

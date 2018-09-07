@@ -26,13 +26,55 @@ class WeekTest extends TestCase {
         $expected =
             [
                 'data'  => [
-                    'd-1535148000' => ['data' => [1535180700], 'stats' => []],
-                    'd-1535234400' => ['data' => [1535265900, 1535267100], 'stats' => []],
-                    'd-1534716000' => ['data' => [], 'stats' => []],
-                    'd-1534802400' => ['data' => [], 'stats' => []],
-                    'd-1534888800' => ['data' => [], 'stats' => []],
-                    'd-1534975200' => ['data' => [], 'stats' => []],
-                    'd-1535061600' => ['data' => [], 'stats' => []],
+                    'd-1535148000' => ['data' => [1535180700], 'stats' => [
+                        'count'       => 1,
+                        'duration'    => 57600,
+                        'min_gap'     => 57600,
+                        'max_gap'     => 57600,
+                        'average_gap' => 57600,
+                    ]],
+                    'd-1535234400' => ['data' => [1535265900, 1535267100], 'stats' => [
+                        'count'       => 2,
+                        'duration'    => 1200,
+                        'min_gap'     => 1200,
+                        'max_gap'     => 1200,
+                        'average_gap' => 1200
+                    ]],
+                    'd-1534716000' => ['data' => [], 'stats' => [
+                        'count'       => 0,
+                        'duration'    => 57600,
+                        'min_gap'     => 86400,
+                        'max_gap'     => 86400,
+                        'average_gap' => 86400
+                    ]],
+                    'd-1534802400' => ['data' => [], 'stats' => [
+                        'count'       => 0,
+                        'duration'    => 57600,
+                        'min_gap'     => 86400,
+                        'max_gap'     => 86400,
+                        'average_gap' => 86400
+                    ]],
+                    'd-1534888800' => ['data' => [], 'stats' => [
+                        'count'       => 0,
+                        'duration'    => 57600,
+                        'min_gap'     => 86400,
+                        'max_gap'     => 86400,
+                        'average_gap' => 86400
+                    ]],
+                    'd-1534975200' => ['data' => [], 'stats' => [
+                        'count'       => 0,
+                        'duration'    => 57600,
+                        'min_gap'     => 86400,
+                        'max_gap'     => 86400,
+                        'average_gap' => 86400
+                    ]],
+                    'd-1535061600' => ['data' => [], 'stats' => [
+                        'count'       => 0,
+                        'duration'    => 57600,
+                        'min_gap'     => 86400,
+                        'max_gap'     => 86400,
+                        'average_gap' => 86400
+                    ]],
                 ],
                 'stats' => []
             ];
@@ -64,13 +106,55 @@ class WeekTest extends TestCase {
         $expected =
             [
                 'data'  => [
-                    'd-1535148000' => ['data' => [1535180700], 'stats' => []],
-                    'd-1535234400' => ['data' => [1535265900, 1535267100], 'stats' => []],
-                    'd-1534716000' => ['data' => [], 'stats' => []],
-                    'd-1534802400' => ['data' => [], 'stats' => []],
-                    'd-1534888800' => ['data' => [], 'stats' => []],
-                    'd-1534975200' => ['data' => [], 'stats' => []],
-                    'd-1535061600' => ['data' => [], 'stats' => []],
+                    'd-1535148000' => ['data' => [1535180700], 'stats' => [
+                        'count'       => 1,
+                        'duration'    => 57600,
+                        'min_gap'     => 57600,
+                        'max_gap'     => 57600,
+                        'average_gap' => 57600,
+                    ]],
+                    'd-1535234400' => ['data' => [1535265900, 1535267100], 'stats' => [
+                        'count'       => 2,
+                        'duration'    => 1200,
+                        'min_gap'     => 1200,
+                        'max_gap'     => 1200,
+                        'average_gap' => 1200,
+                    ]],
+                    'd-1534716000' => ['data' => [], 'stats' => [
+                        'count'       => 0,
+                        'duration'    => 57600,
+                        'min_gap'     => 86400,
+                        'max_gap'     => 86400,
+                        'average_gap' => 86400
+                    ]],
+                    'd-1534802400' => ['data' => [], 'stats' => [
+                        'count'       => 0,
+                        'duration'    => 57600,
+                        'min_gap'     => 86400,
+                        'max_gap'     => 86400,
+                        'average_gap' => 86400
+                    ]],
+                    'd-1534888800' => ['data' => [], 'stats' => [
+                        'count'       => 0,
+                        'duration'    => 57600,
+                        'min_gap'     => 86400,
+                        'max_gap'     => 86400,
+                        'average_gap' => 86400
+                    ]],
+                    'd-1534975200' => ['data' => [], 'stats' => [
+                        'count'       => 0,
+                        'duration'    => 57600,
+                        'min_gap'     => 86400,
+                        'max_gap'     => 86400,
+                        'average_gap' => 86400
+                    ]],
+                    'd-1535061600' => ['data' => [], 'stats' => [
+                        'count'       => 0,
+                        'duration'    => 57600,
+                        'min_gap'     => 86400,
+                        'max_gap'     => 86400,
+                        'average_gap' => 86400
+                    ]],
                 ],
                 'stats' => []
             ];

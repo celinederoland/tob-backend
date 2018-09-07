@@ -36,13 +36,64 @@ class TimeFixture {
     public static function week0(): array {
         return [
             'data'  => [
-                'd-1527458400' => ['data' => [], 'stats' => []],
-                'd-1527544800' => ['data' => [], 'stats' => []],
-                'd-1527631200' => ['data' => [], 'stats' => []],
-                'd-1527717600' => ['data' => [], 'stats' => []],
-                'd-1527804000' => ['data' => self::week0day5(), 'stats' => []],
-                'd-1527890400' => ['data' => self::week0day6(), 'stats' => []],
-                'd-1527976800' => ['data' => self::week0day7(), 'stats' => []],
+                'd-1527458400' => ['data' => [], 'stats' => [
+                    'count'       => 0,
+                    'duration'    => 57600,
+                    'min_gap'     => 86400,
+                    'max_gap'     => 86400,
+                    'average_gap' => 86400
+                ]],
+                'd-1527544800' => ['data' => [], 'stats' => [
+                    'count'       => 0,
+                    'duration'    => 57600,
+                    'min_gap'     => 86400,
+                    'max_gap'     => 86400,
+                    'average_gap' => 86400
+                ]],
+                'd-1527631200' => ['data' => [], 'stats' => [
+                    'count'       => 0,
+                    'duration'    => 57600,
+                    'min_gap'     => 86400,
+                    'max_gap'     => 86400,
+                    'average_gap' => 86400
+                ]],
+                'd-1527717600' => ['data' => [], 'stats' => [
+                    'count'       => 0,
+                    'duration'    => 57600,
+                    'min_gap'     => 86400,
+                    'max_gap'     => 86400,
+                    'average_gap' => 86400
+                ]],
+                'd-1527804000' => [
+                    'data'  => self::week0day5(),
+                    'stats' => [
+                        'count'       => 15,
+                        'duration'    => 66000,
+                        'min_gap'     => 1200,
+                        'max_gap'     => 9300,
+                        'average_gap' => 4714,
+                    ]
+                ],
+                'd-1527890400' => [
+                    'data'  => self::week0day6(),
+                    'stats' => [
+                        'count'       => 10,
+                        'duration'    => 55800,
+                        'min_gap'     => 1200,
+                        'max_gap'     => 10500,
+                        'average_gap' => 6200,
+                    ]
+                ],
+                'd-1527976800' => [
+                    'data'  => self::week0day7(),
+                    'stats' => [
+                        'count'       => 10,
+                        'duration'    => 59700,
+                        'min_gap'     => 2700,
+                        'max_gap'     => 10800,
+                        'average_gap' => 6633,
+                    ]
+                ],
             ],
             'stats' => []
         ];
@@ -54,13 +105,76 @@ class TimeFixture {
     public static function week1(): array {
         return [
             'data'  => [
-                'd-1528063200' => ['data' => self::week1day1(), 'stats' => []],
-                'd-1528149600' => ['data' => self::week1day2(), 'stats' => []],
-                'd-1528236000' => ['data' => self::week1day3(), 'stats' => []],
-                'd-1528322400' => ['data' => self::week1day4(), 'stats' => []],
-                'd-1528408800' => ['data' => self::week1day5(), 'stats' => []],
-                'd-1528495200' => ['data' => self::week1day6(), 'stats' => []],
-                'd-1528581600' => ['data' => self::week1day7(), 'stats' => []],
+                'd-1528063200' => [
+                    'data'  => self::week1day1(),
+                    'stats' => [
+                        'count'       => 9,
+                        'duration'    => 61800,
+                        'min_gap'     => 3600,
+                        'max_gap'     => 10800,
+                        'average_gap' => 7725,
+                    ]
+                ],
+                'd-1528149600' => [
+                    'data'  => self::week1day2(),
+                    'stats' => [
+                        'count'       => 12,
+                        'duration'    => 64200,
+                        'min_gap'     => 1200,
+                        'max_gap'     => 10800,
+                        'average_gap' => 5836,
+                    ]
+                ],
+                'd-1528236000' => [
+                    'data'  => self::week1day3(),
+                    'stats' => [
+                        'count'       => 13,
+                        'duration'    => 60900,
+                        'min_gap'     => 1500,
+                        'max_gap'     => 10200,
+                        'average_gap' => 5075,
+                    ]
+                ],
+                'd-1528322400' => [
+                    'data'  => self::week1day4(),
+                    'stats' => [
+                        'count'       => 14,
+                        'duration'    => 52200,
+                        'min_gap'     => 1200,
+                        'max_gap'     => 10500,
+                        'average_gap' => 4015,
+                    ]
+                ],
+                'd-1528408800' => [
+                    'data'  => self::week1day5(),
+                    'stats' => [
+                        'count'       => 11,
+                        'duration'    => 61500,
+                        'min_gap'     => 1200,
+                        'max_gap'     => 10500,
+                        'average_gap' => 6150,
+                    ]
+                ],
+                'd-1528495200' => [
+                    'data'  => self::week1day6(),
+                    'stats' => [
+                        'count'       => 11,
+                        'duration'    => 63300,
+                        'min_gap'     => 2100,
+                        'max_gap'     => 10200,
+                        'average_gap' => 6330,
+                    ]
+                ],
+                'd-1528581600' => [
+                    'data'  => self::week1day7(),
+                    'stats' => [
+                        'count'       => 12,
+                        'duration'    => 60900,
+                        'min_gap'     => 1200,
+                        'max_gap'     => 10800,
+                        'average_gap' => 5536,
+                    ]
+                ],
             ],
             'stats' => []
         ];
@@ -72,13 +186,74 @@ class TimeFixture {
     public static function week2(): array {
         return [
             'data'  => [
-                'd-1528668000' => ['data' => self::week2day1(), 'stats' => []],
-                'd-1528754400' => ['data' => self::week2day2(), 'stats' => []],
-                'd-1528840800' => ['data' => self::week2day3(), 'stats' => []],
-                'd-1528927200' => ['data' => self::week2day4(), 'stats' => []],
-                'd-1529013600' => ['data' => self::week2day5(), 'stats' => []],
-                'd-1529100000' => ['data' => self::week2day6(), 'stats' => []],
-                'd-1529186400' => ['data' => self::week2day7(), 'stats' => []],
+                'd-1528668000' => [
+                    'data'  => self::week2day1(),
+                    'stats' => [
+                        'count'       => 12,
+                        'duration'    => 69900,
+                        'min_gap'     => 1200,
+                        'max_gap'     => 10200,
+                        'average_gap' => 6354]
+                ],
+                'd-1528754400' => [
+                    'data'  => self::week2day2(),
+                    'stats' => [
+                        'count'       => 11,
+                        'duration'    => 58800,
+                        'min_gap'     => 3000,
+                        'max_gap'     => 10500,
+                        'average_gap' => 5880
+                    ]
+                ],
+                'd-1528840800' => [
+                    'data'  => self::week2day3(),
+                    'stats' => [
+                        'count'       => 13,
+                        'duration'    => 63900,
+                        'min_gap'     => 1200,
+                        'max_gap'     => 10800,
+                        'average_gap' => 5325,
+                    ]
+                ],
+                'd-1528927200' => [
+                    'data'  => self::week2day4(),
+                    'stats' => [
+                        'count'       => 12,
+                        'duration'    => 58500,
+                        'min_gap'     => 2100,
+                        'max_gap'     => 10200,
+                        'average_gap' => 5318,
+                    ]
+                ],
+                'd-1529013600' => [
+                    'data'  => self::week2day5(),
+                    'stats' => [
+                        'count'       => 10,
+                        'duration'    => 60000,
+                        'min_gap'     => 2400,
+                        'max_gap'     => 9900,
+                        'average_gap' => 6666,
+                    ]
+                ],
+                'd-1529100000' => [
+                    'data'  => self::week2day6(),
+                    'stats' => [
+                        'count'       => 16,
+                        'duration'    => 64800,
+                        'min_gap'     => 1200,
+                        'max_gap'     => 10200,
+                        'average_gap' => 4320,
+                    ]],
+                'd-1529186400' => [
+                    'data'  => self::week2day7(),
+                    'stats' => [
+                        'count'       => 10,
+                        'duration'    => 69300,
+                        'min_gap'     => 3000,
+                        'max_gap'     => 10200,
+                        'average_gap' => 7700,
+                    ]
+                ],
             ],
             'stats' => []
         ];
@@ -90,13 +265,76 @@ class TimeFixture {
     public static function week3(): array {
         return [
             'data'  => [
-                'd-1529272800' => ['data' => self::week3day1(), 'stats' => []],
-                'd-1529359200' => ['data' => self::week3day2(), 'stats' => []],
-                'd-1529445600' => ['data' => self::week3day3(), 'stats' => []],
-                'd-1529532000' => ['data' => [], 'stats' => []],
-                'd-1529618400' => ['data' => [], 'stats' => []],
-                'd-1529704800' => ['data' => [], 'stats' => []],
-                'd-1529791200' => ['data' => [], 'stats' => []],
+                'd-1529272800' => [
+                    'data'  => self::week3day1(),
+                    'stats' => [
+                        'count'       => 11,
+                        'duration'    => 63300,
+                        'min_gap'     => 1800,
+                        'max_gap'     => 10800,
+                        'average_gap' => 6330,
+                    ]
+                ],
+                'd-1529359200' => [
+                    'data'  => self::week3day2(),
+                    'stats' => [
+                        'count'       => 11,
+                        'duration'    => 60000,
+                        'min_gap'     => 1200,
+                        'max_gap'     => 10500,
+                        'average_gap' => 6000,
+                    ]
+                ],
+                'd-1529445600' => [
+                    'data'  => self::week3day3(),
+                    'stats' => [
+                        'count'       => 10,
+                        'duration'    => 53400,
+                        'min_gap'     => 1800,
+                        'max_gap'     => 10200,
+                        'average_gap' => 5933,
+                    ]
+                ],
+                'd-1529532000' => [
+                    'data'  => [],
+                    'stats' => [
+                        'count'       => 0,
+                        'duration'    => 57600,
+                        'min_gap'     => 86400,
+                        'max_gap'     => 86400,
+                        'average_gap' => 86400,
+                    ]
+                ],
+                'd-1529618400' => [
+                    'data'  => [],
+                    'stats' => [
+                        'count'       => 0,
+                        'duration'    => 57600,
+                        'min_gap'     => 86400,
+                        'max_gap'     => 86400,
+                        'average_gap' => 86400,
+                    ]
+                ],
+                'd-1529704800' => [
+                    'data'  => [],
+                    'stats' => [
+                        'count'       => 0,
+                        'duration'    => 57600,
+                        'min_gap'     => 86400,
+                        'max_gap'     => 86400,
+                        'average_gap' => 86400,
+                    ]
+                ],
+                'd-1529791200' => [
+                    'data'  => [],
+                    'stats' => [
+                        'count'       => 0,
+                        'duration'    => 57600,
+                        'min_gap'     => 86400,
+                        'max_gap'     => 86400,
+                        'average_gap' => 86400,
+                    ]
+                ],
             ],
             'stats' => []
         ];

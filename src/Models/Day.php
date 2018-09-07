@@ -13,6 +13,11 @@ class Day implements \JsonSerializable {
     /** @var Time[] */
     private $timestamps = [];
 
+    private $count    = 0;
+    private $duration = 16 * Constants::ONE_HOUR;
+    private $min_gap  = Constants::ONE_DAY;
+    private $max_gap  = Constants::ONE_DAY;
+
     /**
      * @param Time $t
      * @return Day
@@ -20,10 +25,31 @@ class Day implements \JsonSerializable {
      */
     public function addTime(Time $t): Day {
 
-        if(!$this->isEmpty() && $this->fullDay() !== $t->fullDay()) {
+        if (!$this->isEmpty() && $this->fullDay() !== $t->fullDay()) {
             throw new InvalidException('This time is not in the same day');
         }
         $this->timestamps[] = $t;
+
+        $this->count++;
+
+        if ($this->count === 1) {
+            $this->min_gap = $this->max_gap = $this->duration;
+            return $this;
+        }
+
+        if ($this->timestamps[$this->count - 1] < $this->timestamps[$this->count - 2]) $this->sort();
+
+        $gap = $this->timestamps[$this->count - 1]->time() - $this->timestamps[$this->count - 2]->time();
+
+        if ($this->count === 2) {
+            $this->min_gap = $this->max_gap = $this->duration = $gap;
+            return $this;
+        }
+
+        $this->duration += $gap;
+        if ($this->min_gap > $gap) $this->min_gap = $gap;
+        if ($this->max_gap < $gap) $this->max_gap = $gap;
+
         return $this;
     }
 
@@ -132,8 +158,16 @@ class Day implements \JsonSerializable {
      */
     public function jsonSerialize() {
 
-        usort($this->timestamps,function (Time $a, Time $b) { return $a->time() - $b->time(); });
-        return ['data' => $this->timestamps, 'stats' => []];
+        return [
+            'data'  => $this->timestamps,
+            'stats' => [
+                'count'       => $this->count,
+                'duration'    => $this->duration,
+                'min_gap'     => $this->min_gap,
+                'max_gap'     => $this->max_gap,
+                'average_gap' => $this->averageGap(),
+            ]
+        ];
     }
 
     /**
@@ -141,5 +175,37 @@ class Day implements \JsonSerializable {
      */
     public function isEmpty(): bool {
         return empty($this->timestamps);
+    }
+
+
+    public function count() {
+
+        return $this->count;
+    }
+
+    public function duration() {
+
+        return $this->duration;
+    }
+
+
+    public function minGap() {
+
+        return $this->min_gap;
+    }
+
+    public function maxGap() {
+
+        return $this->max_gap;
+    }
+
+    public function averageGap() {
+
+        return $this->count < 2 ? $this->min_gap : intval($this->duration / ($this->count - 1));
+    }
+
+    private function sort() {
+
+        usort($this->timestamps, function (Time $a, Time $b) { return $a->time() - $b->time(); });
     }
 }

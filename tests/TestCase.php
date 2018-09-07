@@ -22,16 +22,4 @@ class TestCase extends \PHPUnit\Framework\TestCase {
             sleep(5);
         }
     }
-
-    public function testFlushProdDb() {
-
-
-        TimeRepository::instance()->initializeDatabase(1531116000);
-    }
-
-   /* public function testRedis() {
-
-        (new TimeRepository())->initializeDatabase(1527832800);
-        TimeFixture::fixture();
-    }*/
 }
