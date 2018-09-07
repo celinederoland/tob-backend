@@ -14,10 +14,12 @@ class Week implements \JsonSerializable {
     /** @var Day[] */
     private $days     = [];
     private $ref_time = null;
+    private $last_day = 1;
 
     public function __construct($time = null) {
 
         !is_null($time) ? $this->ref_time = (new Time())->init($time) : null;
+        for ($i = 1; $i <= 7; $i++) $this->days[$i] = new Day();
     }
 
     /**
@@ -30,24 +32,13 @@ class Week implements \JsonSerializable {
         if (!$this->isEmpty() && $this->fullWeek() !== $t->fullWeek()) {
             throw new InvalidException('This time is not in the same week');
         }
-        if (!isset($this->days[$t->day()])) {
-            $this->days[$t->day()] = new Day();
+        if (!isset($this->ref_time)) {
+            $this->ref_time = $t;
         }
-        $this->days[$t->day()]->addTime($t);
-        return $this;
-    }
 
-    /**
-     * @param Day $d
-     * @return Week
-     * @throws InvalidException
-     */
-    public function addDay(Day $d): Week {
-
-        if (!$this->isEmpty() && $this->fullWeek() !== $d->fullWeek()) {
-            throw new InvalidException('This day is not in the same week');
-        }
-        $this->days[$d->day()] = $d;
+        $day_num        = $t->day();
+        $this->last_day = max($day_num, $this->last_day);
+        $this->days[$day_num]->addTime($t);
         return $this;
     }
 
@@ -60,11 +51,7 @@ class Week implements \JsonSerializable {
         if (isset($this->ref_time)) {
             return $this->ref_time->week();
         }
-
-        if ($this->isEmpty()) {
-            throw new InvalidException('Try to get week on empty week');
-        }
-        return reset($this->days)->week();
+        throw new InvalidException('Try to get week on empty week');
     }
 
     /**
@@ -76,10 +63,7 @@ class Week implements \JsonSerializable {
         if (isset($this->ref_time)) {
             return $this->ref_time->fullWeek();
         }
-        if ($this->isEmpty()) {
-            throw new InvalidException('Try to get fullWeek on empty week');
-        }
-        return reset($this->days)->fullWeek();
+        throw new InvalidException('Try to get fullWeek on empty week');
     }
 
     /**
@@ -91,10 +75,7 @@ class Week implements \JsonSerializable {
         if (isset($this->ref_time)) {
             return $this->ref_time->weekStartTime();
         }
-        if ($this->isEmpty()) {
-            throw new InvalidException('Try to get weekStartTime on empty week');
-        }
-        return reset($this->days)->weekStartTime();
+        throw new InvalidException('Try to get weekStartTime on empty week');
     }
 
     /**
@@ -106,10 +87,7 @@ class Week implements \JsonSerializable {
         if (isset($this->ref_time)) {
             return $this->ref_time->weekStartTime();
         }
-        if ($this->isEmpty()) {
-            throw new InvalidException('Try to get weekEndTime on empty week');
-        }
-        return reset($this->days)->weekEndTime();
+        throw new InvalidException('Try to get weekEndTime on empty week');
     }
 
     /**
@@ -124,26 +102,64 @@ class Week implements \JsonSerializable {
 
         $indexed_days = [];
 
-        $days = array_values($this->days);
-        /** @var Day $day */
-        while ($day = array_pop($days)) {
-            $indexed_days['d-' . $day->dayStartTime()] = $day;
-        }
-
         $start = $this->weekStartTime();
         for ($i = 0; $i < 7; $i++) {
             if (!isset($indexed_days['d-' . ($start + $i * Constants::ONE_DAY)]))
-                $indexed_days['d-' . ($start + $i * Constants::ONE_DAY)] = new Day();
+                $indexed_days['d-' . ($start + $i * Constants::ONE_DAY)] = $this->days[$i + 1];
         }
 
         ksort($indexed_days);
-        return ['data' => $indexed_days, 'stats' => []];
+        return [
+            'data'  => $indexed_days,
+            'stats' => [
+                'count'       => $this->count(),
+                'duration'    => $this->duration(),
+                'min_gap'     => $this->minGap(),
+                'max_gap'     => $this->maxGap(),
+                'average_gap' => $this->averageGap(),
+            ]
+        ];
     }
 
     /**
      * @return bool
      */
     public function isEmpty(): bool {
-        return !isset($this->ref_time) && empty($this->days);
+        return !isset($this->ref_time) && $this->days[$this->last_day]->isEmpty();
     }
+
+    private function average(\Closure $closure) {
+
+        $total = 0;
+        for ($i = 1; $i <= $this->last_day; $i++) $total += $closure($this->days[$i]);
+        return intval($total / $this->last_day);
+    }
+
+    public function count() {
+
+        return $this->average(function (Day $d) { return $d->count(); });
+    }
+
+    public function duration() {
+
+        return $this->average(function (Day $d) { return $d->duration(); });
+    }
+
+
+    public function minGap() {
+
+        return $this->average(function (Day $d) { return $d->minGap(); });
+    }
+
+    public function maxGap() {
+
+        return $this->average(function (Day $d) { return $d->maxGap(); });
+    }
+
+    public function averageGap() {
+
+        return $this->average(function (Day $d) { return $d->averageGap(); });
+    }
+
+
 }

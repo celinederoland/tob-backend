@@ -26,6 +26,41 @@ class WeekTest extends TestCase {
         $expected =
             [
                 'data'  => [
+                    'd-1534716000' => ['data' => [], 'stats' => [
+                        'count'       => 0,
+                        'duration'    => 57600,
+                        'min_gap'     => 86400,
+                        'max_gap'     => 86400,
+                        'average_gap' => 86400
+                    ]],
+                    'd-1534802400' => ['data' => [], 'stats' => [
+                        'count'       => 0,
+                        'duration'    => 57600,
+                        'min_gap'     => 86400,
+                        'max_gap'     => 86400,
+                        'average_gap' => 86400
+                    ]],
+                    'd-1534888800' => ['data' => [], 'stats' => [
+                        'count'       => 0,
+                        'duration'    => 57600,
+                        'min_gap'     => 86400,
+                        'max_gap'     => 86400,
+                        'average_gap' => 86400
+                    ]],
+                    'd-1534975200' => ['data' => [], 'stats' => [
+                        'count'       => 0,
+                        'duration'    => 57600,
+                        'min_gap'     => 86400,
+                        'max_gap'     => 86400,
+                        'average_gap' => 86400
+                    ]],
+                    'd-1535061600' => ['data' => [], 'stats' => [
+                        'count'       => 0,
+                        'duration'    => 57600,
+                        'min_gap'     => 86400,
+                        'max_gap'     => 86400,
+                        'average_gap' => 86400
+                    ]],
                     'd-1535148000' => ['data' => [1535180700], 'stats' => [
                         'count'       => 1,
                         'duration'    => 57600,
@@ -40,43 +75,14 @@ class WeekTest extends TestCase {
                         'max_gap'     => 1200,
                         'average_gap' => 1200
                     ]],
-                    'd-1534716000' => ['data' => [], 'stats' => [
-                        'count'       => 0,
-                        'duration'    => 57600,
-                        'min_gap'     => 86400,
-                        'max_gap'     => 86400,
-                        'average_gap' => 86400
-                    ]],
-                    'd-1534802400' => ['data' => [], 'stats' => [
-                        'count'       => 0,
-                        'duration'    => 57600,
-                        'min_gap'     => 86400,
-                        'max_gap'     => 86400,
-                        'average_gap' => 86400
-                    ]],
-                    'd-1534888800' => ['data' => [], 'stats' => [
-                        'count'       => 0,
-                        'duration'    => 57600,
-                        'min_gap'     => 86400,
-                        'max_gap'     => 86400,
-                        'average_gap' => 86400
-                    ]],
-                    'd-1534975200' => ['data' => [], 'stats' => [
-                        'count'       => 0,
-                        'duration'    => 57600,
-                        'min_gap'     => 86400,
-                        'max_gap'     => 86400,
-                        'average_gap' => 86400
-                    ]],
-                    'd-1535061600' => ['data' => [], 'stats' => [
-                        'count'       => 0,
-                        'duration'    => 57600,
-                        'min_gap'     => 86400,
-                        'max_gap'     => 86400,
-                        'average_gap' => 86400
-                    ]],
                 ],
-                'stats' => []
+                'stats' => [
+                    'count'       => 0,
+                    'duration'    => 49542,
+                    'min_gap'     => 70114,
+                    'max_gap'     => 70114,
+                    'average_gap' => 70114,
+                ]
             ];
         self::assertEquals($expected, $actual);
         try {
@@ -84,86 +90,6 @@ class WeekTest extends TestCase {
             self::fail('Must throw `This time is not in the same week`');
         } catch (InvalidException $exception) {
             self::assertEquals('This time is not in the same week', $exception->getMessage());
-        }
-    }
-
-    /**
-     * @throws InvalidException
-     */
-    public function testAddDay() {
-
-        $time1 = (new Time())->init(1535267100); //2018-08-26 09:05
-        $time2 = (new Time())->init(1535265900); //2018-08-26 08:45
-        $time3 = (new Time())->init(1535180700); //2018-08-25 09:05
-        $time4 = (new Time())->init(1535353500); //2018-08-27 09:05
-
-        $day1 = (new Day())->addTime($time3);
-        $day2 = (new Day())->addTime($time1)->addTime($time2);
-        $day3 = (new Day())->addTime($time4);
-
-        $week     = (new Week())->addDay($day1)->addDay($day2);
-        $actual   = json_decode(json_encode($week), true);
-        $expected =
-            [
-                'data'  => [
-                    'd-1535148000' => ['data' => [1535180700], 'stats' => [
-                        'count'       => 1,
-                        'duration'    => 57600,
-                        'min_gap'     => 57600,
-                        'max_gap'     => 57600,
-                        'average_gap' => 57600,
-                    ]],
-                    'd-1535234400' => ['data' => [1535265900, 1535267100], 'stats' => [
-                        'count'       => 2,
-                        'duration'    => 1200,
-                        'min_gap'     => 1200,
-                        'max_gap'     => 1200,
-                        'average_gap' => 1200,
-                    ]],
-                    'd-1534716000' => ['data' => [], 'stats' => [
-                        'count'       => 0,
-                        'duration'    => 57600,
-                        'min_gap'     => 86400,
-                        'max_gap'     => 86400,
-                        'average_gap' => 86400
-                    ]],
-                    'd-1534802400' => ['data' => [], 'stats' => [
-                        'count'       => 0,
-                        'duration'    => 57600,
-                        'min_gap'     => 86400,
-                        'max_gap'     => 86400,
-                        'average_gap' => 86400
-                    ]],
-                    'd-1534888800' => ['data' => [], 'stats' => [
-                        'count'       => 0,
-                        'duration'    => 57600,
-                        'min_gap'     => 86400,
-                        'max_gap'     => 86400,
-                        'average_gap' => 86400
-                    ]],
-                    'd-1534975200' => ['data' => [], 'stats' => [
-                        'count'       => 0,
-                        'duration'    => 57600,
-                        'min_gap'     => 86400,
-                        'max_gap'     => 86400,
-                        'average_gap' => 86400
-                    ]],
-                    'd-1535061600' => ['data' => [], 'stats' => [
-                        'count'       => 0,
-                        'duration'    => 57600,
-                        'min_gap'     => 86400,
-                        'max_gap'     => 86400,
-                        'average_gap' => 86400
-                    ]],
-                ],
-                'stats' => []
-            ];
-        self::assertEquals($expected, $actual);
-        try {
-            $week->addDay($day3);
-            self::fail('Must throw `This day is not in the same week`');
-        } catch (InvalidException $exception) {
-            self::assertEquals('This day is not in the same week', $exception->getMessage());
         }
     }
 

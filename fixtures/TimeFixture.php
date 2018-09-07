@@ -95,7 +95,13 @@ class TimeFixture {
                     ]
                 ],
             ],
-            'stats' => []
+            'stats' => [
+                'count'       => 5,
+                'duration'    => 58842,
+                'min_gap'     => 50100,
+                'max_gap'     => 53742,
+                'average_gap' => 51878,
+            ]
         ];
     }
 
@@ -176,7 +182,13 @@ class TimeFixture {
                     ]
                 ],
             ],
-            'stats' => []
+            'stats' => [
+                'count'       => 11,
+                'duration'    => 60685,
+                'min_gap'     => 1714,
+                'max_gap'     => 10542,
+                'average_gap' => 5809,
+            ]
         ];
     }
 
@@ -255,7 +267,13 @@ class TimeFixture {
                     ]
                 ],
             ],
-            'stats' => []
+            'stats' => [
+                'count'       => 12,
+                'duration'    => 63600,
+                'min_gap'     => 2014,
+                'max_gap'     => 10285,
+                'average_gap' => 5937,
+            ]
         ];
     }
 
@@ -336,7 +354,13 @@ class TimeFixture {
                     ]
                 ],
             ],
-            'stats' => []
+            'stats' => [
+                'count'       => 10,
+                'duration'    => 58900,
+                'min_gap'     => 1600,
+                'max_gap'     => 10500,
+                'average_gap' => 6087,
+            ]
         ];
     }
 
